@@ -21,8 +21,6 @@ def train():
 
     sess = tf.InteractiveSession()
 
-    # loss = tf.reduce_mean(tf.rsqrt(tf.square(tf.sub(model.y_, model.y))))
-
     with tf.name_scope('loss'):
         loss = tf.reduce_mean(tf.square(tf.sub(model.y_, model.y)))
         tf.scalar_summary('mse', loss)
@@ -68,43 +66,7 @@ def train():
 
     train_writer.close()
     test_writer.close()
-        # xs, ys = driving_data.LoadTrainBatch(100)
-        # train_step.run(feed_dict={model.x: xs, model.y_: ys, model.keep_prob: 0.8})
-        # if i % 10 == 0:
-        #     xs, ys = driving_data.LoadValBatch(100)
-        #     summary, acc = sess.run([merged, loss], feed_dict={
-        #         model.x: xs, model.y_: ys, model.keep_prob: 1.0})
-        #     test_writer.add_summary(summary, i)
-        #     print('RMSE at step %s: %s' % (i, acc))
-        #
-        #
-        # else:  # Record a summary
-        #     summary, _ = sess.run([merged, train_step], feed_dict={
-        #         model.x: xs, model.y_: ys, model.keep_prob: 1.0})
-        #     train_writer.add_summary(summary, i)
-        #     if i % 100 == 99:  # Record execution stats
-        #         print('Adding run metadata for', i)
-        #         run_options = tf.RunOptions(trace_level=tf.RunOptions.FULL_TRACE)
-        #         run_metadata = tf.RunMetadata()
-        #         summary, _ = sess.run([merged, train_step],
-        #                               feed_dict={
-        #         model.x: xs, model.y_: ys, model.keep_prob: 1.0})
-        #         train_writer.add_run_metadata(run_metadata, 'step%03d' % i)
-        #         train_writer.add_summary(summary, i)
-        #
-        #     else:  # Record a summary
-        #         summary, _ = sess.run([merged, train_step], feed_dict={
-        #         model.x: xs, model.y_: ys, model.keep_prob: 1.0})
-        #         train_writer.add_summary(summary, i)
-        #         train_step.run(session=sess, feed_dict={
-        #         model.x: xs, model.y_: ys, model.keep_prob: 1.0})
-        # if i % 100 == 0:
-        #     if not os.path.exists(LOGDIR):
-        #         os.makedirs(LOGDIR)
-        #         checkpoint_path = os.path.join(LOGDIR, "model.ckpt")
-        #         filename = saver.save(sess, checkpoint_path)
-        #         print("Model saved in file: %s" % filename)
-
+     
 def main(_):
 
     train()
